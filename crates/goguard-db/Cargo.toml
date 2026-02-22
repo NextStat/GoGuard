@@ -1,0 +1,28 @@
+[package]
+name = "goguard-db"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "GoGuard db - salsa-based incremental computation database"
+
+[dependencies]
+boa_engine.workspace = true
+salsa.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+winnow.workspace = true
+goguard-ir = { path = "../goguard-ir" }
+goguard-diagnostics = { path = "../goguard-diagnostics" }
+goguard-nil = { path = "../goguard-nil" }
+goguard-errcheck = { path = "../goguard-errcheck" }
+goguard-concurrency = { path = "../goguard-concurrency" }
+goguard-ownership = { path = "../goguard-ownership" }
+goguard-exhaustive = { path = "../goguard-exhaustive" }
+goguard-taint = { path = "../goguard-taint" }
+
+[dev-dependencies]
+goguard-ir = { path = "../goguard-ir", features = ["test-fixtures"] }

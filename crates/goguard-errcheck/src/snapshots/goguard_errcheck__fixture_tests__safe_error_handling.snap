@@ -1,0 +1,5 @@
+---
+source: crates/goguard-errcheck/src/lib.rs
+expression: "&diags"
+---
+[]

@@ -1,0 +1,20 @@
+[
+  {
+    "rule": "ERR001",
+    "severity": "error",
+    "title": "error return value ignored",
+    "location": {
+      "file": "ignored_error.go",
+      "line": 11
+    }
+  },
+  {
+    "rule": "ERR002",
+    "severity": "warning",
+    "title": "error assigned to blank identifier",
+    "location": {
+      "file": "ignored_error.go",
+      "line": 17
+    }
+  }
+]

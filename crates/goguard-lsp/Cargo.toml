@@ -1,0 +1,22 @@
+[package]
+name = "goguard-lsp"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "GoGuard LSP - Language Server Protocol implementation"
+
+[dependencies]
+goguard-core = { path = "../goguard-core" }
+goguard-db = { path = "../goguard-db" }
+goguard-diagnostics = { path = "../goguard-diagnostics" }
+tower-lsp-server.workspace = true
+anyhow.workspace = true
+tree-sitter.workspace = true
+tree-sitter-go.workspace = true
+serde.workspace = true
+tokio.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true

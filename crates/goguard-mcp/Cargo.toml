@@ -1,0 +1,29 @@
+[package]
+name = "goguard-mcp"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "GoGuard MCP - Model Context Protocol server integration"
+
+[dependencies]
+goguard-core = { path = "../goguard-core" }
+goguard-db = { path = "../goguard-db" }
+goguard-diagnostics = { path = "../goguard-diagnostics" }
+goguard-ir = { path = "../goguard-ir" }
+rmcp.workspace = true
+schemars.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+anyhow.workspace = true
+chrono = { version = "0.4", default-features = false, features = ["clock", "serde"] }
+goguard-agent = { path = "../goguard-agent" }
+goguard-learn = { path = "../goguard-learn" }
+
+[dev-dependencies]
+goguard-ir = { path = "../goguard-ir", features = ["test-fixtures"] }
+tempfile = "3"

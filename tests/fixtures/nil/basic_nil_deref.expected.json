@@ -1,0 +1,26 @@
+[
+  {
+    "rule": "NIL001",
+    "severity": "critical",
+    "title": "nil pointer dereference",
+    "location": {
+      "file": "basic_nil_deref.go",
+      "line": 22
+    },
+    "root_cause": {
+      "file": "basic_nil_deref.go",
+      "line": 18,
+      "description": "missing return after error handling"
+    },
+    "fix": {
+      "description": "Add return after error log",
+      "edits": [
+        {
+          "file": "basic_nil_deref.go",
+          "range": { "start_line": 19, "end_line": 19 },
+          "new_text": "\t\tlog.Printf(\"error: %v\", err)\n\t\treturn"
+        }
+      ]
+    }
+  }
+]

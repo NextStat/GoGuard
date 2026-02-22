@@ -1,0 +1,16 @@
+[
+  {
+    "rule": "NIL001",
+    "severity": "critical",
+    "title": "nil pointer dereference",
+    "location": {
+      "file": "error_ignored.go",
+      "line": 18
+    },
+    "root_cause": {
+      "file": "error_ignored.go",
+      "line": 17,
+      "description": "error return value discarded with blank identifier"
+    }
+  }
+]

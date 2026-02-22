@@ -1,0 +1,22 @@
+---
+source: crates/goguard-nil/src/lib.rs
+expression: "&diags"
+---
+- id: "NIL002-[FIXTURE_DIR]/type_assertion.go:8"
+  rule: NIL002
+  severity: critical
+  confidence: 1
+  title: unchecked type assertion
+  explanation: "In function `TypeAssertionWithoutOk`, type assertion without comma-ok pattern. Use `v, ok := x.(T)`"
+  location:
+    file: "[FIXTURE_DIR]/type_assertion.go"
+    line: 8
+    column: 11
+    end_line: 8
+    end_column: 11
+  root_cause: ~
+  fix: ~
+  related: []
+  blast_radius: ~
+  pattern: ~
+  source: nil

@@ -1,0 +1,17 @@
+[package]
+name = "goguard-learn"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "GoGuard learn - adaptive learning from annotations and feedback"
+
+[dependencies]
+goguard-diagnostics = { path = "../goguard-diagnostics" }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile = "3"

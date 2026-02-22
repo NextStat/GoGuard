@@ -1,0 +1,14 @@
+[
+  {
+    "rule": "NIL002",
+    "severity": "critical",
+    "title": "missing nil check after type assertion",
+    "location": {
+      "file": "type_assertion.go",
+      "line": 8
+    },
+    "fix": {
+      "description": "Use comma-ok pattern for type assertion"
+    }
+  }
+]

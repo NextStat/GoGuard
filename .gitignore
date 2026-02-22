@@ -1,0 +1,12 @@
+/target
+*.swp
+*.swo
+.DS_Store
+.idea/
+.vscode/
+*.log
+.worktrees/
+public-repo/
+goguard-go-bridge/goguard-go-bridge
+**/__pycache__/
+sdk/python/dist/

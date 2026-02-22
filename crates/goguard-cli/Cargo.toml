@@ -1,0 +1,43 @@
+[package]
+name = "goguard-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "GoGuard CLI - command-line interface for the Go safety analyzer"
+
+[[bin]]
+name = "goguard"
+path = "src/main.rs"
+
+[dependencies]
+goguard-core = { path = "../goguard-core" }
+goguard-db = { path = "../goguard-db" }
+goguard-ir = { path = "../goguard-ir" }
+goguard-diagnostics = { path = "../goguard-diagnostics" }
+goguard-mcp = { path = "../goguard-mcp" }
+goguard-lsp = { path = "../goguard-lsp" }
+goguard-ecosystem = { path = "../goguard-ecosystem" }
+goguard-agent = { path = "../goguard-agent" }
+goguard-nil = { path = "../goguard-nil" }
+goguard-errcheck = { path = "../goguard-errcheck" }
+clap.workspace = true
+rustyline.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+serde_json.workspace = true
+reqwest = { version = "0.13.2", features = ["json"] }
+self-replace = "1.5.0"
+flate2 = "1.1.9"
+tar = "0.4.44"
+zip = "7.1"
+serde.workspace = true
+tempfile = "3"
+
+[dev-dependencies]
+assert_cmd.workspace = true
+predicates = "3"
+tempfile = "3"

@@ -1,0 +1,16 @@
+[
+  {
+    "rule": "NIL001",
+    "severity": "critical",
+    "title": "nil pointer dereference",
+    "location": {
+      "file": "missing_return.go",
+      "line": 25
+    },
+    "root_cause": {
+      "file": "missing_return.go",
+      "line": 21,
+      "description": "missing return after http.Error"
+    }
+  }
+]

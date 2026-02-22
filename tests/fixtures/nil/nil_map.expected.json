@@ -1,0 +1,20 @@
+[
+  {
+    "rule": "NIL004",
+    "severity": "warning",
+    "title": "nil map access",
+    "location": {
+      "file": "nil_map.go",
+      "line": 10
+    }
+  },
+  {
+    "rule": "NIL004",
+    "severity": "critical",
+    "title": "nil map write — runtime panic",
+    "location": {
+      "file": "nil_map.go",
+      "line": 17
+    }
+  }
+]

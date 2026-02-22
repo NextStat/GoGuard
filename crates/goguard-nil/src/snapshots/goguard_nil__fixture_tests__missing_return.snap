@@ -1,0 +1,22 @@
+---
+source: crates/goguard-nil/src/lib.rs
+expression: "&diags"
+---
+- id: "NIL001-[FIXTURE_DIR]/missing_return.go:28"
+  rule: NIL001
+  severity: critical
+  confidence: 0.9
+  title: nil pointer dereference
+  explanation: "In function `MissingReturnAfterHTTPError`, value `t_var` may be nil when dereferenced"
+  location:
+    file: "[FIXTURE_DIR]/missing_return.go"
+    line: 28
+    column: 44
+    end_line: 28
+    end_column: 44
+  root_cause: ~
+  fix: ~
+  related: []
+  blast_radius: ~
+  pattern: ~
+  source: nil

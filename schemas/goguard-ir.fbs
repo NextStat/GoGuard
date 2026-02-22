@@ -1,0 +1,216 @@
+namespace goguard.ir;
+
+// ─── Enums ───
+// Note: flatc v25 requires enum definitions before tables that reference them.
+
+enum TypeKind : byte {
+  Basic, Pointer, Slice, Map, Channel, Struct, Interface,
+  Function, Array, Named, Tuple, Nil
+}
+
+enum ChannelDir : byte { SendRecv, SendOnly, RecvOnly }
+
+enum InstructionKind : byte {
+  // Values
+  Alloc, Phi, Call, BinOp, UnOp, Convert, ChangeType,
+  MakeInterface, MakeSlice, MakeMap, MakeChan, MakeClosure,
+  // Memory
+  FieldAddr, IndexAddr, Lookup, MapLookup, Slice,
+  // Control
+  If, Jump, Return, Panic, Go, Defer, Select, Send,
+  // Special
+  TypeAssert, ChangeInterface, Extract, Next, Range,
+  // Store/Load
+  Store, Load, MapUpdate,
+  // Other
+  RunDefers, Unknown,
+  // Synthetic (emitted by bridge for fn.Params)
+  FuncParam
+}
+
+// ─── Common ───
+
+table SourcePos {
+  file: string;
+  line: int32;
+  column: int32;
+  end_line: int32;
+  end_column: int32;
+  offset: int32;
+}
+
+table BridgeError {
+  file: string;
+  line: int32;
+  message: string;
+  is_type_error: bool;
+}
+
+table DeferInfo {
+  call_target: string;
+  source_pos: SourcePos;
+  index: int32;
+}
+
+// ─── Types ───
+
+table TypeInfo {
+  kind: TypeKind;
+  name: string;
+  underlying: string;
+  is_pointer: bool;
+  is_interface: bool;
+  is_error: bool;
+  is_channel: bool;
+  channel_dir: ChannelDir;
+  elem_type: string;
+  key_type: string;
+}
+
+// ─── Variables ───
+
+table Variable {
+  name: string;
+  type_info: TypeInfo;
+  source_pos: SourcePos;
+}
+
+// ─── CFG (SSA Form) ───
+
+table SelectCase {
+  dir: ChannelDir;
+  channel: string;
+  is_default: bool;
+}
+
+table Operand {
+  name: string;
+  type_info: TypeInfo;
+  is_constant: bool;
+  constant_value: string;
+  is_nil: bool;
+}
+
+table Instruction {
+  kind: InstructionKind;
+  source_pos: SourcePos;
+  result_var: string;
+  result_type: TypeInfo;
+  operands: [Operand];
+  call_target: string;
+  call_target_qualified: string;
+  is_interface_call: bool;
+  field_name: string;
+  map_key: string;
+  channel_op: ChannelDir;
+  type_assert_target: string;
+  type_assert_has_ok: bool;
+  select_cases: [SelectCase];
+  // Extract-specific: index into tuple return (0-based).
+  extract_index: int32 = 0;
+}
+
+table BasicBlock {
+  id: int32;
+  instructions: [Instruction];
+  successors: [int32];
+  predecessors: [int32];
+  is_entry: bool;
+  is_exit: bool;
+  is_defer_block: bool;
+  source_pos: SourcePos;
+}
+
+// ─── Function ───
+
+table Parameter {
+  name: string;
+  type_info: TypeInfo;
+}
+
+table ReturnType {
+  name: string;
+  type_info: TypeInfo;
+}
+
+table FunctionSignature {
+  params: [Parameter];
+  returns: [ReturnType];
+  is_variadic: bool;
+}
+
+table Function {
+  name: string;
+  qualified_name: string;
+  signature: FunctionSignature;
+  blocks: [BasicBlock];
+  source_pos: SourcePos;
+  is_generated: bool;
+  defers: [DeferInfo];
+  free_vars: [Variable];
+  is_method: bool;
+  receiver_type: string;
+}
+
+// ─── Package ───
+
+table Package {
+  path: string;
+  name: string;
+  functions: [Function];
+  global_vars: [Variable];
+  is_generated: bool;
+}
+
+// ─── Call Graph ───
+
+table CallEdge {
+  caller: string;
+  callee: string;
+  call_site: SourcePos;
+  is_static: bool;
+  is_go: bool;
+  is_defer: bool;
+}
+
+table CallGraph {
+  edges: [CallEdge];
+}
+
+// ─── Interfaces ───
+
+table InterfaceEntry {
+  interface_name: string;
+  implementors: [string];
+  methods: [string];
+}
+
+table InterfaceTable {
+  entries: [InterfaceEntry];
+}
+
+// ─── Enums (const/iota groups) ───
+
+table EnumConstant {
+  name: string;
+  value: string;
+}
+
+table EnumGroup {
+  type_name: string;
+  constants: [EnumConstant];
+}
+
+// ─── Top Level ───
+
+table AnalysisResult {
+  packages: [Package];
+  call_graph: CallGraph;
+  interface_table: InterfaceTable;
+  enum_groups: [EnumGroup];
+  errors: [BridgeError];
+  go_version: string;
+  module_path: string;
+}
+
+root_type AnalysisResult;

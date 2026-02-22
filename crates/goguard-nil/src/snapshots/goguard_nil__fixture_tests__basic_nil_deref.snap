@@ -1,0 +1,22 @@
+---
+source: crates/goguard-nil/src/lib.rs
+expression: "&diags"
+---
+- id: "NIL001-[FIXTURE_DIR]/basic_nil_deref.go:25"
+  rule: NIL001
+  severity: critical
+  confidence: 0.9
+  title: nil pointer dereference
+  explanation: "In function `BasicNilDeref`, value `t_var` may be nil when dereferenced"
+  location:
+    file: "[FIXTURE_DIR]/basic_nil_deref.go"
+    line: 25
+    column: 19
+    end_line: 25
+    end_column: 19
+  root_cause: ~
+  fix: ~
+  related: []
+  blast_radius: ~
+  pattern: ~
+  source: nil

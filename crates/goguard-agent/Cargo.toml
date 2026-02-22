@@ -1,0 +1,22 @@
+[package]
+name = "goguard-agent"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "GoGuard agent - AI agent integration layer"
+
+[dependencies]
+goguard-core = { path = "../goguard-core" }
+goguard-diagnostics = { path = "../goguard-diagnostics" }
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+gix.workspace = true
+goguard-ir = { path = "../goguard-ir" }
+
+[dev-dependencies]
+tempfile.workspace = true

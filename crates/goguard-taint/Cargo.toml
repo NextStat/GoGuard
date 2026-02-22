@@ -1,0 +1,19 @@
+[package]
+name = "goguard-taint"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "GoGuard taint - taint analysis for security vulnerabilities"
+
+[dependencies]
+goguard-ir = { path = "../goguard-ir" }
+goguard-diagnostics = { path = "../goguard-diagnostics" }
+goguard-types = { path = "../goguard-types" }
+serde.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+goguard-ir = { path = "../goguard-ir", features = ["test-fixtures"] }

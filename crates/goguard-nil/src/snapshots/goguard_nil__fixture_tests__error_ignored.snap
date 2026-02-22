@@ -1,0 +1,22 @@
+---
+source: crates/goguard-nil/src/lib.rs
+expression: "&diags"
+---
+- id: "NIL001-[FIXTURE_DIR]/error_ignored.go:18"
+  rule: NIL001
+  severity: critical
+  confidence: 0.9
+  title: nil pointer dereference
+  explanation: "In function `ErrorIgnored`, value `t_var` may be nil when dereferenced"
+  location:
+    file: "[FIXTURE_DIR]/error_ignored.go"
+    line: 18
+    column: 14
+    end_line: 18
+    end_column: 14
+  root_cause: ~
+  fix: ~
+  related: []
+  blast_radius: ~
+  pattern: ~
+  source: nil

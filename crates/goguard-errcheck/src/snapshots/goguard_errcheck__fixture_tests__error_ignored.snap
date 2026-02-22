@@ -1,0 +1,40 @@
+---
+source: crates/goguard-errcheck/src/lib.rs
+expression: "&diags"
+---
+- id: "ERR002-[FIXTURE_DIR]/ignored_error.go:16"
+  rule: ERR002
+  severity: warning
+  confidence: 0.95
+  title: error assigned to blank identifier
+  explanation: "In function `ErrorAssignedToBlank`, error from `os.Open` explicitly discarded with `_`"
+  location:
+    file: "[FIXTURE_DIR]/ignored_error.go"
+    line: 16
+    column: 16
+    end_line: 0
+    end_column: 0
+  root_cause: ~
+  fix: ~
+  related: []
+  blast_radius: ~
+  pattern: ~
+  source: errcheck
+- id: "ERR001-[FIXTURE_DIR]/ignored_error.go:10"
+  rule: ERR001
+  severity: error
+  confidence: 0.95
+  title: error return value not checked
+  explanation: "In function `IgnoredError`, error returned by `os.Remove` is not checked"
+  location:
+    file: "[FIXTURE_DIR]/ignored_error.go"
+    line: 10
+    column: 11
+    end_line: 0
+    end_column: 0
+  root_cause: ~
+  fix: ~
+  related: []
+  blast_radius: ~
+  pattern: ~
+  source: errcheck

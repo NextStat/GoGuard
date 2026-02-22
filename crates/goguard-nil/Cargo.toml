@@ -1,0 +1,20 @@
+[package]
+name = "goguard-nil"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "GoGuard nil - nil pointer dereference analysis"
+
+[dependencies]
+goguard-ir = { path = "../goguard-ir" }
+goguard-diagnostics = { path = "../goguard-diagnostics" }
+goguard-types = { path = "../goguard-types" }
+serde.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+insta = { workspace = true, features = ["yaml"] }
+goguard-ir = { path = "../goguard-ir", features = ["test-fixtures"] }

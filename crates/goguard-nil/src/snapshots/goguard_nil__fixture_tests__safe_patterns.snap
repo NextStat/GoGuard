@@ -1,0 +1,5 @@
+---
+source: crates/goguard-nil/src/lib.rs
+expression: "&diags"
+---
+[]
